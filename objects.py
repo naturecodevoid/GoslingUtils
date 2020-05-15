@@ -76,11 +76,15 @@ class GoslingAgent(BaseAgent):
 
     def debug_stack(self):
         # Draws the stack on the screen
-        white = self.renderer.white()
+        color = self.renderer.white()
+        if self.team == 0:
+            color = self.renderer.blue()
+        elif self.team == 1:
+            color = self.renderer.red()
         for i in range(len(self.stack) - 1, -1, -1):
             text = self.stack[i].__class__.__name__
             self.renderer.draw_string_2d(
-                10, 50 + (50 * (len(self.stack) - i)), 3, 3, text, white
+                10, (50 + (50 * (len(self.stack) - i))) * self.index, 3, 3, text, color
             )
 
     def clear(self):
