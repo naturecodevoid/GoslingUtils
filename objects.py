@@ -1,4 +1,5 @@
 import math
+from utils import cap
 import rlbot.utils.structures.game_data_struct as game_data_struct
 from rlbot.agents.base_agent import BaseAgent, SimpleControllerState
 
