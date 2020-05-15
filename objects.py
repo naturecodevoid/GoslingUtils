@@ -132,6 +132,12 @@ class GoslingAgent(BaseAgent):
         if len(self.stack) > 0:
             self.stack[-1].run(self)
         self.renderer.end_rendering()
+        # clamp controller values
+        self.controller.pitch = cap(self.controller.pitch, -1, 1)
+        self.controller.yaw = cap(self.controller.yaw, -1, 1)
+        self.controller.roll = cap(self.controller.roll, -1, 1)
+        self.controller.steer = cap(self.controller.steer, -1, 1)
+        self.controller.throttle = cap(self.controller.throttle, -1, 1)
         # send our updated controller back to rlbot
         return self.controller
 
