@@ -86,6 +86,14 @@ class GoslingAgent(BaseAgent):
             self.renderer.draw_string_2d(
                 10, (50 + (50 * (len(self.stack) - i))) * self.index, 3, 3, text, color
             )
+            self.renderer.draw_string_3d(
+                Vector3(self.me.location)
+                + Vector3(0, 0, (50 * (len(self.stack) - i)) + 12),
+                4,
+                4,
+                text,
+                color,
+            )
 
     def clear(self):
         # Shorthand for clearing the stack of all routines
@@ -127,7 +135,7 @@ class GoslingAgent(BaseAgent):
 
         self.renderer.begin_rendering()
         # Run our strategy code
-        self.run()
+        self.run(self)
         # run the routine on the end of the stack
         if len(self.stack) > 0:
             self.stack[-1].run(self)
@@ -135,7 +143,7 @@ class GoslingAgent(BaseAgent):
         # send our updated controller back to rlbot
         return self.controller
 
-    def run(self):
+    def run(self, agent):
         # override this with your strategy code
         pass
 
