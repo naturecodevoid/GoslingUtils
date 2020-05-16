@@ -3,6 +3,8 @@ from GoslingUtils.objects import GoslingAgent as _GoslingAgent
 
 # This file is for strategic tools
 
+max_hit_time = 6.5
+
 
 def find_hits(agent: _GoslingAgent, targets):
     # find_hits takes a dict of (left,right) target pairs and finds routines that could hit the ball between those target pairs
@@ -24,7 +26,7 @@ def find_hits(agent: _GoslingAgent, targets):
         # Gather some data about the slice
         intercept_time = struct.slices[i].game_seconds
         time_remaining = intercept_time - agent.time
-        if time_remaining > 0:
+        if max_hit_time > time_remaining > 0:
             ball_location = Vector3(struct.slices[i].physics.location)
             ball_velocity = Vector3(struct.slices[i].physics.velocity).magnitude()
 
