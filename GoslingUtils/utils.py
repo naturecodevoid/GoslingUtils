@@ -23,6 +23,11 @@ def cap(x, low, high):
     return x
 
 
+def clamp(x, low=-1, high=1):
+    # caps/clamps a number between a low and high value
+    return min(max(x, -1), 1)
+
+
 def defaultPD(agent: _GoslingAgent, local_target, direction=1.0):
     # points the car towards a given local target.
     # Direction can be changed to allow the car to steer towards a target while driving backwards
