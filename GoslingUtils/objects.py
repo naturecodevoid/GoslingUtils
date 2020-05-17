@@ -74,13 +74,7 @@ class GoslingAgent(BaseAgent):
 
     def pop(self):
         # Shorthand for removing a routine from the stack, returns the routine
-        try:
-            return self.stack.pop()
-        except:
-            try:
-                return self.stack[len(self.stack) - 1]
-            except:
-                return
+        return self.stack.pop()
 
     def line(self, start, end, color=None):
         color = color if color != None else [255, 255, 255]
