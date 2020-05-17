@@ -77,7 +77,10 @@ class GoslingAgent(BaseAgent):
         try:
             return self.stack.pop()
         except:
-            return self.stack[self.stack.length - 1]
+            try:
+                return self.stack[len(self.stack) - 1]
+            except:
+                return
 
     def line(self, start, end, color=None):
         color = color if color != None else [255, 255, 255]
