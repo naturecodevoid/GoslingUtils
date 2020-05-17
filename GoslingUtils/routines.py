@@ -509,7 +509,7 @@ class short_shot:
         left_vector = car_to_ball.cross((0, 0, 1))
         right_vector = car_to_ball.cross((0, 0, -1))
         target_vector = -ball_to_target.clamp(left_vector, right_vector)
-        final_target = agent.ball.location + (target_vector * (distance / 2))
+        final_target = agent.ball.location + (target_vector * (distance / 2.75))
 
         # Some adjustment to the final target to ensure we don't try to dirve through any goalposts to reach it
         if abs(agent.me.location[1]) > 5150:
@@ -536,6 +536,6 @@ class short_shot:
             True if abs(angles[1]) > 2.3 else agent.controller.handbrake
         )
 
-        if abs(angles[1]) < 0.05 and (eta < 0.45 or distance < 150):
+        if abs(angles[1]) < 0.05 and (eta < 0.35 or distance < 150):
             agent.pop()
             agent.push(flip(agent.me.local(car_to_ball)))
