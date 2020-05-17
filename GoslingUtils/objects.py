@@ -1,6 +1,7 @@
 import math
 import rlbot.utils.structures.game_data_struct as game_data_struct
 from rlbot.agents.base_agent import BaseAgent, SimpleControllerState
+from rlbot.utils.structures.quick_chats import QuickChats
 
 # This file holds all of the objects used in gosling utils
 # Includes custom vector and matrix objects
@@ -33,10 +34,15 @@ class GoslingAgent(BaseAgent):
         self.controller = SimpleControllerState()
         # a flag that tells us when kickoff is happening
         self.kickoff_flag = False
+        # a multiplier you can use to convert coordinates to the correct side of the field
+        # -1 for team 0 (blue), 1 for team 1 (orange)
+        self.team_multiplier = self.team * 2 - 1
 
         self.last_time = 0
         self.my_score = 0
         self.foe_score = 0
+
+        self.send_quick_chat(QuickChats.CHAT_EVERYONE, QuickChats.Reactions_Okay)
 
     def get_ready(self, packet):
         # Preps all of the objects that will be updated during play

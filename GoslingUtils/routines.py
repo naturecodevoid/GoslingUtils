@@ -524,7 +524,8 @@ class short_shot:
         angles = defaultPD(agent, agent.me.local(final_target - agent.me.location))
         defaultThrottle(
             agent,
-            2300 if distance > 1600 else 2300 - cap(1600 * abs(angles[1]), 0, 2050),
+            distance / eta * (agent.ball.location.z / 300) * 20,
+            # 2300 if distance > 1600 else 2300 - cap(1600 * abs(angles[1]), 0, 2050),
         )
         agent.controller.boost = (
             False
